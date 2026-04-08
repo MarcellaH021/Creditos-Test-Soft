@@ -39,12 +39,15 @@ describe("UsageService", () => {
 
   test("Deve registrar o uso", () => {
     // Execute o método registerUsage com uma ação válida
+    service.registerUsage(user, "EXPORT", plan)
 
     // Verifique se um log foi adicionado (tamanho da lista = 1)
+    expect(service.logs.length).toBe(1);
   });
 
   test("Deve lançar erro para ação inválida", () => {
     // Execute o método registerUsage com uma ação inválida (ex: "INVALID")
+    expect(() => service.registerUsage(user, "INVALID", plan)).toThrow("Invalid action")
 
     // Verifique se um erro é lançado com a mensagem "Invalid action"
   });
